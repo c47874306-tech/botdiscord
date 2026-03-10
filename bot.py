@@ -3,7 +3,7 @@ from discord import app_commands
 import os
 
 TOKEN = os.getenv("TOKEN")
-ROLE_NAME = "user"
+ROLE_NAME = "User"
 GUILD_ID = 1480672748761120798
 
 VALID_KEYS = {
