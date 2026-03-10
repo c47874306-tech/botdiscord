@@ -4,6 +4,7 @@ import os
 
 TOKEN = os.getenv("TOKEN")
 ROLE_NAME = "user"
+GUILD_ID = 1480672748761120798
 
 VALID_KEYS = {
     'Premium-0L6BET4H6798','Premium-0OMXCEZHRFLN','Premium-0SRWJTANB795',
@@ -65,7 +66,7 @@ intents.members = True
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
-@tree.command(name="verify", description="Верификация по ключу")
+@tree.command(name="verify", description="Верификация по ключу", guild=discord.Object(id=GUILD_ID))
 async def verify(interaction: discord.Interaction, key: str):
     if key in USED_KEYS:
         await interaction.response.send_message("❌ Этот ключ уже был использован.", ephemeral=True)
@@ -83,7 +84,7 @@ async def verify(interaction: discord.Interaction, key: str):
 
 @client.event
 async def on_ready():
-    await tree.sync()
+    await tree.sync(guild=discord.Object(id=GUILD_ID))
     print(f"Бот запущен: {client.user}")
 
 client.run(TOKEN)
