@@ -3,7 +3,7 @@ from discord import app_commands
 import os
 
 TOKEN = os.getenv("TOKEN")
-ROLE_NAME = "User"
+ROLE_NAME = "user"
 GUILD_ID = 1480672748761120798
 
 VALID_KEYS = {
@@ -84,6 +84,8 @@ async def verify(interaction: discord.Interaction, key: str):
 
 @client.event
 async def on_ready():
+    tree.clear_commands(guild=None)
+    await tree.sync(guild=None)
     await tree.sync(guild=discord.Object(id=GUILD_ID))
     print(f"Бот запущен: {client.user}")
 
