@@ -1,7 +1,8 @@
 import discord
 from discord import app_commands
+import os
 
-TOKEN = "ТОКЕН_СЮДА"
+TOKEN = os.getenv("TOKEN")
 ROLE_NAME = "user"
 
 VALID_KEYS = {
